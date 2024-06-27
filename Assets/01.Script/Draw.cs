@@ -39,7 +39,7 @@ public class Draw : MonoBehaviour
 
     void CreateBrush()
     {
-        GameObject brushInstance = Instantiate(brush);
+        GameObject brushInstance = Instantiate(brush, this.transform);
         currentLineRenderer = brushInstance.GetComponent<LineRenderer>();
 
         Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
