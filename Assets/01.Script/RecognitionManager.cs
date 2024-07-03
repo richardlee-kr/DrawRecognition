@@ -74,8 +74,9 @@ public class RecognitionManager : MonoBehaviour
         {
             //Save Template
             GestureTemplate newTemplate = new GestureTemplate(_templateName, points);
+            GestureTemplate preparedTemplate = new GestureTemplate(_templateName, m_currentRecognizer.Normalize(points, 64));
             m_templates.RawTemplates.Add(newTemplate);
-            m_templates.ProceedTemplates.Add(newTemplate);
+            m_templates.ProceedTemplates.Add(preparedTemplate);
         }
         else
         {
