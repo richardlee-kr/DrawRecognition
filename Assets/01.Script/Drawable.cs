@@ -33,6 +33,9 @@ public class Drawable : MonoBehaviour
         }
         if(Input.GetMouseButton(0))
         {
+            if (m_lineRenderer == null)
+                CreateBrush();
+
             Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
             if(mousePos != lastPos)
             {
@@ -71,8 +74,7 @@ public class Drawable : MonoBehaviour
         m_lineRenderer.positionCount++;
         m_lineRenderer.SetPosition(_positionIndex, pointPos);
 
-        //m_drawPoints.Add(new DollarPoint(pointPos.x, pointPos.y));
-        m_drawPoints.Add(new DollarPoint(pointPos.x*100+500, pointPos.y*100+375));
+        m_drawPoints.Add(new DollarPoint((pointPos.x+WIDTH/2)*100, (pointPos.y+HEIGHT/2)*100));
     }
 
     private bool InRange()
