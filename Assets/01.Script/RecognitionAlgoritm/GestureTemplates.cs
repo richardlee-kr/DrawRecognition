@@ -18,16 +18,17 @@ public class GestureTemplates
         return instance;
     }
     public List<RecognitionManager.GestureTemplate> RawTemplates = new List<RecognitionManager.GestureTemplate>();
-    public List<RecognitionManager.GestureTemplate> ProceedTemplates = new List<RecognitionManager.GestureTemplate>();
+    //public List<RecognitionManager.GestureTemplate> ProceedTemplates = new List<RecognitionManager.GestureTemplate>();
 
     public List<RecognitionManager.GestureTemplate> GetTemplates()
     {
-        return ProceedTemplates;
+        //return ProceedTemplates;
+        return RawTemplates;
     }
 
     public void RemoveAtIndex(int indexToRemove)
     {
-        ProceedTemplates.RemoveAt(indexToRemove);
+        //ProceedTemplates.RemoveAt(indexToRemove);
         RawTemplates.RemoveAt(indexToRemove);
     }
 
@@ -51,8 +52,8 @@ public class GestureTemplates
             GestureTemplates data = JsonUtility.FromJson<GestureTemplates>(File.ReadAllText(path));
             RawTemplates.Clear();
             RawTemplates.AddRange(data.RawTemplates);
-            ProceedTemplates.Clear();
-            ProceedTemplates.AddRange(data.ProceedTemplates);
+            //ProceedTemplates.Clear();
+            //ProceedTemplates.AddRange(data.ProceedTemplates);
         }
     }
 

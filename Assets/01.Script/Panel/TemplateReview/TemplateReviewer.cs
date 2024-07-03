@@ -89,13 +89,16 @@ public class TemplateReviewer : MonoBehaviour
 
     private void RemoveTemplate()
     {
-        IEnumerable<RecognitionManager.GestureTemplate> templatesByName = m_templates.ProceedTemplates
+        //IEnumerable<RecognitionManager.GestureTemplate> templatesByName = m_templates.ProceedTemplates
+        //    .Where(template => template.name == m_currentTemplateName).ToList();
+        IEnumerable<RecognitionManager.GestureTemplate> templatesByName = m_templates.RawTemplates
             .Where(template => template.name == m_currentTemplateName).ToList();
         Debug.Log(templatesByName.Count());
         RecognitionManager.GestureTemplate templateToRemove = templatesByName
             .ElementAt(m_currentTemplateIndex);
 
-        int indexToRemove = m_templates.ProceedTemplates.IndexOf(templateToRemove);
+        //int indexToRemove = m_templates.ProceedTemplates.IndexOf(templateToRemove);
+        int indexToRemove = m_templates.RawTemplates.IndexOf(templateToRemove);
         m_templates.RemoveAtIndex(indexToRemove);
 
         if(m_currentTemplateIndex != 0)
