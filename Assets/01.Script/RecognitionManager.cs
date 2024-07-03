@@ -6,22 +6,20 @@ using TMPro;
 public class RecognitionManager : MonoBehaviour
 {
     [SerializeField] private Drawable m_drawable;
+    [SerializeField] private RecognitionPanel m_recogntionPanel;
+    [SerializeField] private TemplateReviewer m_templateReviewer;
+    private GestureTemplates m_templates => GestureTemplates.Get();
+    private IRecognizer m_currentRecognizer;
+    [SerializeField]
+    private RecognizerMode m_mode = RecognizerMode.TEMPLATE;
+
+    private string _templateName => input_templateName.text;
 
     [SerializeField] private Button btn_recognizeMode;
     [SerializeField] private Button btn_templateMode;
     [SerializeField] private Button btn_reviewMode;
     [SerializeField] private TextMeshProUGUI txt_recognitionResult;
     [SerializeField] private TMP_InputField input_templateName;
-
-    [SerializeField] private RecognitionPanel m_recogntionPanel;
-    [SerializeField] private TemplateReviewer m_templateReviewer;
-
-    private string _templateName => input_templateName.text;
-
-    private GestureTemplates m_templates => GestureTemplates.Get();
-    private IRecognizer m_currentRecognizer;
-    [SerializeField]
-    private RecognizerMode m_mode = RecognizerMode.TEMPLATE;
 
     public enum RecognizerMode
     {
