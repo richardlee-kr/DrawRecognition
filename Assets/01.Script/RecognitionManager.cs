@@ -93,7 +93,6 @@ public class RecognitionManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        Debug.Log("Quit");
         m_templates.Save();
     }
 }
