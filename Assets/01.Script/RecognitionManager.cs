@@ -76,9 +76,11 @@ public class RecognitionManager : MonoBehaviour
             m_templates.RawTemplates.Add(newTemplate);
             m_templates.ProceedTemplates.Add(preparedTemplate);
         }
-        else
+        else if(m_mode == RecognizerMode.RECOGNITION)
         {
             //Do Recognition
+            if (m_currentRecognizer == null)
+                return;
             (string, float) result = m_currentRecognizer.DoRecognition(points, 64, m_templates.RawTemplates);
             string resultText = "";
             switch (m_currentRecognizer)
