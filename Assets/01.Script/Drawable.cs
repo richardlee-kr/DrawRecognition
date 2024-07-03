@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +10,7 @@ public class Drawable : MonoBehaviour
     [SerializeField] private float WIDTH = 10;
     [SerializeField] private float HEIGHT = 10;
 
-    LineRenderer m_LineRenderer;
+    LineRenderer m_lineRenderer;
     Vector2 lastPos;
 
     private List<DollarPoint> m_drawPoints = new List<DollarPoint>();
@@ -22,11 +21,11 @@ public class Drawable : MonoBehaviour
     {
         if(InRange())
         {
-            Drawing();
+            Draw();
         }
     }
 
-    private void Drawing()
+    private void Draw()
     {
         if(Input.GetMouseButtonDown(0))
         {
@@ -43,7 +42,7 @@ public class Drawable : MonoBehaviour
         }
         if(Input.GetMouseButtonUp(0))
         {
-            m_LineRenderer = null;
+            m_lineRenderer = null;
         }
 
         if(Input.GetKeyDown(KeyCode.Space))
@@ -57,20 +56,20 @@ public class Drawable : MonoBehaviour
     private void CreateBrush()
     {
         GameObject _brushInstance = Instantiate(m_brush, this.transform);
-        m_LineRenderer = _brushInstance.GetComponent<LineRenderer>();
+        m_lineRenderer = _brushInstance.GetComponent<LineRenderer>();
 
         Vector2 _mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
 
-        m_LineRenderer.SetPosition(0, _mousePos);
-        m_LineRenderer.SetPosition(1, _mousePos);
+        m_lineRenderer.SetPosition(0, _mousePos);
+        m_lineRenderer.SetPosition(1, _mousePos);
     }
 
 
     private void AddPoint(Vector2 pointPos)
     {
-        int _positionIndex = m_LineRenderer.positionCount;
-        m_LineRenderer.positionCount++;
-        m_LineRenderer.SetPosition(_positionIndex, pointPos);
+        int _positionIndex = m_lineRenderer.positionCount;
+        m_lineRenderer.positionCount++;
+        m_lineRenderer.SetPosition(_positionIndex, pointPos);
 
         //m_drawPoints.Add(new DollarPoint(pointPos.x, pointPos.y));
         m_drawPoints.Add(new DollarPoint(pointPos.x*100+500, pointPos.y*100+375));
