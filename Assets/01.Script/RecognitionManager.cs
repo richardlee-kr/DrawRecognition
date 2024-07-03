@@ -80,6 +80,13 @@ public class RecognitionManager : MonoBehaviour
         else
         {
             //Do Recognition
+            (string, float) result = m_currentRecognizer.DoRecognition(points, 64, m_templates.RawTemplates);
+            string resultText = "";
+            switch (m_currentRecognizer)
+            {
+
+            }
+            txt_recognitionResult.text = resultText;
         }
     }
 
