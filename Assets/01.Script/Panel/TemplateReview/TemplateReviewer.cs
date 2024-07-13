@@ -93,7 +93,7 @@ public class TemplateReviewer : MonoBehaviour
         //    .Where(template => template.name == m_currentTemplateName).ToList();
         IEnumerable<RecognitionManager.GestureTemplate> templatesByName = m_templates.RawTemplates
             .Where(template => template.name == m_currentTemplateName).ToList();
-        Debug.Log(templatesByName.Count());
+
         RecognitionManager.GestureTemplate templateToRemove = templatesByName
             .ElementAt(m_currentTemplateIndex);
 
@@ -108,7 +108,7 @@ public class TemplateReviewer : MonoBehaviour
 
         if(templatesByName.Count() == 1)
         {
-            ChooseTemplateToShow(0);
+            dd_templateNameList.value = 0;
         }
 
         UpdateDisplay();
