@@ -1830,14 +1830,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_drawable: {fileID: 862609515}
+  m_recogntionPanel: {fileID: 68204601}
+  m_templateReviewer: {fileID: 48175744}
+  m_mode: 0
   btn_recognizeMode: {fileID: 1583306673}
   btn_templateMode: {fileID: 2084974880}
   btn_reviewMode: {fileID: 2083769649}
   txt_recognitionResult: {fileID: 827919387}
   input_templateName: {fileID: 370102666}
-  m_recogntionPanel: {fileID: 68204601}
-  m_templateReviewer: {fileID: 48175744}
-  m_mode: 0
 --- !u!4 &825387427
 Transform:
   m_ObjectHideFlags: 0
@@ -1889,7 +1889,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 70}
-  m_SizeDelta: {x: 400, y: 100}
+  m_SizeDelta: {x: 1000, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &827919387
 MonoBehaviour:
