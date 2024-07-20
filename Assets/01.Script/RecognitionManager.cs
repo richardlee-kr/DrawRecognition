@@ -2,6 +2,9 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor;
+using System.Collections.Generic;
+using System.Linq;
 
 public class RecognitionManager : MonoBehaviour
 {
@@ -9,9 +12,11 @@ public class RecognitionManager : MonoBehaviour
     [SerializeField] private RecognitionPanel m_recogntionPanel;
     [SerializeField] private TemplateReviewer m_templateReviewer;
     private GestureTemplates m_templates => GestureTemplates.Get();
+    private static Dollar1Recognizer m_dollar1Recognizer = new Dollar1Recognizer("$1 Recognizer"); 
     private IRecognizer m_currentRecognizer;
-    [SerializeField]
-    private RecognizerMode m_mode = RecognizerMode.TEMPLATE;
+    [SerializeField] private RecognizerMode m_mode = RecognizerMode.TEMPLATE;
+
+    public static List<IRecognizer> m_recognizerList = new List<IRecognizer>();
 
     private string _templateName => input_templateName.text;
 
@@ -43,13 +48,21 @@ public class RecognitionManager : MonoBehaviour
 
     private void Awake()
     {
+        m_recognizerList.Add(m_dollar1Recognizer);
+
         btn_recognizeMode.onClick.AddListener(() => SetMode(RecognizerMode.RECOGNITION));
         btn_templateMode.onClick.AddListener(() => SetMode(RecognizerMode.TEMPLATE));
         btn_reviewMode.onClick.AddListener(() => SetMode(RecognizerMode.REVIEW));
 
+        m_recogntionPanel.Initialize(SwitchRecognitionAlgorithm, m_recognizerList);
         m_drawable.OnDrawFinished += OnDrawFinished;
 
         SetMode(m_mode);
+    }
+    
+    private void SwitchRecognitionAlgorithm(int algorithm)
+    {
+        m_currentRecognizer = m_recognizerList[algorithm];
     }
 
     private void SetMode(RecognizerMode mode)
@@ -80,14 +93,20 @@ public class RecognitionManager : MonoBehaviour
         {
             //Do Recognition
             if (m_currentRecognizer == null)
+            {
+                Debug.LogError("currentRecognizer is null");
                 return;
+            }
             (string, float) result = m_currentRecognizer.DoRecognition(points, 64, m_templates.RawTemplates);
             string resultText = "";
-            switch (m_currentRecognizer)
-            {
 
+            if(m_currentRecognizer is Dollar1Recognizer)
+            {
+                resultText = $"Recognized: {result.Item1}, Score: {result.Item2}";
             }
+
             txt_recognitionResult.text = resultText;
+            Debug.Log(resultText);
         }
     }
 
