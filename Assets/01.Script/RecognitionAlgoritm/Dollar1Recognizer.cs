@@ -1,11 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Net.Mime;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Dollar1Recognizer : Recognizer, IRecognizer
 {
