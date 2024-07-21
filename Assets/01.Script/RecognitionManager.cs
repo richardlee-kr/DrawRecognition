@@ -2,9 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor;
 using System.Collections.Generic;
-using System.Linq;
 
 public class RecognitionManager : MonoBehaviour
 {
