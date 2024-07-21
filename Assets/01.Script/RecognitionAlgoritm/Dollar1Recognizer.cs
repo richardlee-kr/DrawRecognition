@@ -43,7 +43,8 @@ public class Dollar1Recognizer : Recognizer, IRecognizer
         float increament = PathLength(points) / (n - 1);
         float proceedDistance = 0;
         DollarPoint[] newPoints = new DollarPoint[n];
-        int _index = 0;
+        newPoints[0] = points[0];
+        int _index = 1;
 
         for (int i = 1; i < _points.Count; i++)
         {
@@ -72,7 +73,11 @@ public class Dollar1Recognizer : Recognizer, IRecognizer
             }
         }
 
-        Debug.Log(newPoints.Length);
+        if(proceedDistance > 0.1f)
+        {
+            newPoints[newPoints.Length - 1] = _points[_points.Count - 1];
+            _index++;
+        }
 
         return newPoints;
     }
@@ -182,7 +187,6 @@ public class Dollar1Recognizer : Recognizer, IRecognizer
 
         foreach(RecognitionManager.GestureTemplate template in templates)
         {
-            Debug.Log(template.name);
             float distance = DistanceAtBestAngle(points, template, -theta, theta, deltaTheta, angle);
 
             if(distance < best)
